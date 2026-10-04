@@ -74,22 +74,26 @@
     heroIn(came ? .45 : .1);
   } else {
     try { sessionStorage.setItem('adepa-intro', '1'); } catch (e) {}
+    var markSlot = document.getElementById('introMark');
+    markSlot.outerHTML = A.mark('intro__mark');
+    var markEl = intro.querySelector('.intro__mark');
     var word = document.getElementById('introWord');
-    'ADEPA'.split('').forEach(function (ch) { var s = document.createElement('span'); s.textContent = ch; word.appendChild(s); });
+    'Adepa'.split('').forEach(function (ch) { var s = document.createElement('span'); s.textContent = ch; word.appendChild(s); });
     var letters = word.querySelectorAll('span');
     var halves = intro.querySelectorAll('.intro__half');
     gsap.set(titleSpans, { yPercent: 108 });
     gsap.set(rest, { opacity: 0, y: 18 }); gsap.set('.nav', { opacity: 0 });
     document.body.classList.add('is-locked');
     var tl = gsap.timeline({ onComplete: function () { intro.style.display = 'none'; document.body.classList.remove('is-locked'); } });
-    tl.fromTo(letters, { yPercent: 110, y: 0 }, { yPercent: 0, duration: 1, ease: 'power4.out', stagger: .07 }, .25)
-      .to('#introRule', { scaleX: 1, duration: .8, ease: 'power3.inOut' }, .75)
-      .to('#introSub', { opacity: 1, duration: .6 }, 1.15)
-      .to('.intro__in', { opacity: 0, y: -24, duration: .5, ease: 'power2.in' }, 2.35)
-      .to(halves[0], { yPercent: -101, duration: 1.05, ease: 'power4.inOut' }, 2.7)
-      .to(halves[1], { yPercent: 101, duration: 1.05, ease: 'power4.inOut' }, 2.7)
-      .add(function () { heroIn(0); }, 3.05);
-    intro.addEventListener('click', function () { tl.progress(1); heroIn(0); });
+    tl.to(markEl.querySelectorAll('circle, path'), { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', stagger: .12 }, .1)
+      .fromTo(letters, { yPercent: 110, y: 0 }, { yPercent: 0, duration: 1, ease: 'power4.out', stagger: .07 }, .55)
+      .to('#introRule', { scaleX: 1, duration: .8, ease: 'power3.inOut' }, 1.0)
+      .to('#introSub', { opacity: 1, duration: .6 }, 1.35)
+      .to('.intro__in', { opacity: 0, y: -24, duration: .5, ease: 'power2.in' }, 2.55)
+      .to(halves[0], { yPercent: -101, duration: 1.05, ease: 'power4.inOut' }, 2.9)
+      .to(halves[1], { yPercent: 101, duration: 1.05, ease: 'power4.inOut' }, 2.9)
+      .add(function () { heroIn(0); }, 3.25);
+    intro.addEventListener('click', function () { tl.progress(1); });
   }
 
   /* ---------- running line: duplicate for a seamless loop ---------- */
@@ -109,10 +113,11 @@
   var chart = document.getElementById('chart');
   function lookHTML(l) {
     var f = A.find(l.svc);
-    return '<a class="look" href="book.html?svc=' + l.svc + '" data-who="' + l.who + '">' +
+    return '<article class="look" data-who="' + l.who + '">' +
       '<div class="ph"><img src="' + IMG + 's/' + l.img + '" alt="' + l.name + '" loading="lazy">' +
-      '<span class="look__no">' + l.no + '</span><span class="look__go">Book number ' + l.no + '</span></div>' +
-      '<div class="look__meta"><h3>' + l.name + '</h3><span>' + (f.item.from ? 'from ' : '') + A.money(f.item.price) + '</span></div></a>';
+      '<span class="look__no">' + l.no + '</span>' +
+      '<button type="button" class="look__add" data-add-svc="' + l.svc + '" data-label="Add number ' + l.no + '" aria-label="Add ' + l.name + ' to your booking"></button></div>' +
+      '<div class="look__meta"><h3>' + l.name + '</h3><span>' + (f.item.from ? 'from ' : '') + A.money(f.item.price) + '</span></div></article>';
   }
   chart.innerHTML = A.looks.map(lookHTML).join('');
   var tiles = Array.prototype.slice.call(chart.children);
@@ -140,8 +145,17 @@
 
   /* ---------- team ---------- */
   document.getElementById('team').innerHTML = A.team.slice(0, 3).map(function (p) {
-    return '<article class="person"><div class="ph" data-unmask><img src="' + IMG + 's/' + p.img + '" alt="' + p.name + '" loading="lazy"></div><h3>' + p.name + '</h3><p>' + p.role + '</p></article>';
+    return '<article class="person"><div class="ph" data-unmask><img src="' + IMG + 's/' + p.img + '" alt="' + p.name + '" loading="lazy"></div><div class="person__plate glass-d"><h3>' + p.name + '</h3><p>' + p.role + '</p></div></article>';
   }).join('');
+
+  /* ---------- shop teaser ---------- */
+  document.getElementById('shopTeaser').innerHTML = ['p1', 'p8', 'p12', 'p15'].map(function (id) {
+    var p = A.product(id);
+    var cat = A.shopCats.filter(function (c) { return c.id === p.cat; })[0];
+    return '<article class="prod glass-d" data-rise><div class="ph"><img src="' + IMG + 's/' + p.img + '" alt="' + p.name + '" loading="lazy"><span class="prod__tag">' + cat.name + '</span></div>' +
+      '<div class="prod__body"><h3>' + p.name + '</h3><div class="prod__row"><span class="prod__price">' + A.money(p.price) + '</span>' + A.addBtn('prod', p.id) + '</div></div></article>';
+  }).join('');
+  A.syncAdds();
 
   /* ---------- slideshow ---------- */
   (function () {

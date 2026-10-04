@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Services and prices | Adepa House</title>
-  <meta name="description" content="The full Adepa House price list: women’s hair, barbering, children’s cuts and braids, nails and make-up. Prices in Ghana cedis.">
+  <meta name="description" content="Every Adepa House service with a photo and a price: women’s hair, barbering, children’s cuts and braids, nails, lashes and make-up. Add what you need and book in one go.">
   <meta name="theme-color" content="#0B1437">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230B1437'/><path d='M20 48 30 16h4l10 32h-6l-2-7H28l-2 7zm9.500-12h5L32 27z' fill='%23FFC72C'/></svg>">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
@@ -16,22 +16,29 @@
     <section class="phead">
       <div class="wrap">
         <h1 class="d-xl" data-lines="manual">Every price,<br>written down.</h1>
-        <p class="t-lead muted" data-rise>What you see here is what you pay at the desk. If your hair needs more time or more product than usual, we tell you before we start, not after.</p>
+        <p class="t-lead muted" data-rise>What you see here is what you pay at the desk. Add as many services as you need, for you or the whole family, and book them in one go.</p>
       </div>
     </section>
 
-    <div class="stick-tabs">
-      <div class="wrap"><div class="tabs" id="svcTabs" role="group" aria-label="Jump to a section"></div></div>
+    <div class="bg-mist" style="padding-bottom:var(--sec)">
+      <div class="svc-bar">
+        <div class="wrap"><div class="seg glass" id="seg" role="group" aria-label="Choose who the services are for"></div></div>
+      </div>
+      <div class="wrap">
+        <div class="svc-intro">
+          <div><h2 id="gName">Women</h2><p id="gBlurb"></p></div>
+          <div class="chips" id="chips" role="group" aria-label="Filter by type"></div>
+        </div>
+        <div class="svc-grid" id="svcGrid"></div>
+      </div>
     </div>
 
-    <div class="wrap" id="svcList"></div>
-
-    <section class="sec">
+    <section class="sec bg-cream">
       <div class="wrap">
         <div class="notes">
-          <div data-rise><h3>What is included</h3><p class="muted">Braids, weaves and treatments include a wash. Extensions are included where the list says so. Wig and weave hair is yours to bring, or ask what we have in stock.</p></div>
-          <div data-rise><h3>Booking and walk-ins</h3><p class="muted">Walk in any time and take the next free chair. If you book, your chair is held for fifteen minutes past the hour. There is no deposit.</p></div>
-          <div data-rise><h3>How to pay</h3><p class="muted">Cash, mobile money or card, at the desk when you are done. Tips go straight to the person who did your hair.</p></div>
+          <div class="note glass" data-rise><h3>What is included</h3><p class="muted">Braids, weaves and treatments include a wash. Extensions are included where the card says so. Wigs and bundles are in our shop, or bring your own.</p></div>
+          <div class="note glass" data-rise><h3>Booking and walk-ins</h3><p class="muted">Walk in any time and take the next free chair. If you book, your chair is held for fifteen minutes past the hour. There is no deposit.</p></div>
+          <div class="note glass" data-rise><h3>How to pay</h3><p class="muted">Services are paid at the desk when you are done: cash, mobile money or card. Tips go straight to the person who did your hair.</p></div>
         </div>
       </div>
     </section>

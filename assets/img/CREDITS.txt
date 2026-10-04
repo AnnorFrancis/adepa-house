@@ -42,7 +42,7 @@ nails-gel-dark.jpg  https://images.unsplash.com/photo-1727468939344-44929b044076
 nails-red.jpg  https://images.unsplash.com/photo-1638668518908-7014917e4507
 nails-pedicure-station.jpg  https://images.unsplash.com/photo-1787651344170-c2f81514934d
 beauty-makeup.jpg  https://images.unsplash.com/photo-1648671095177-d00c1f6264e9
-beauty-bridal.jpg  https://images.unsplash.com/photo-1648671095421-61976aabbd3f
+beauty-bridal.jpg  https://images.unsplash.com/photo-1648671095483-254807669fcd
 work-cornrows.jpg  https://images.unsplash.com/photo-1763048208932-cbe149724374
 work-braiding.jpg  https://images.unsplash.com/photo-1702236240794-58dc4c6895e5
 work-braiding-2.jpg  https://images.unsplash.com/photo-1655254193228-ef692b3cc714
@@ -55,3 +55,27 @@ space-chair-detail.jpg  https://images.unsplash.com/photo-1611313151697-d626e818
 team-1.jpg  https://images.unsplash.com/photo-1625181796571-7f0d4571ab12
 team-2.jpg  https://images.unsplash.com/photo-1759300063434-482e4d65f9bf
 team-3.jpg  https://images.unsplash.com/photo-1632828167073-bd533fe560cb
+
+Added for the services grid and shop:
+svc-blowdry.jpg  https://images.unsplash.com/photo-1712481846916-8f73ffc2067a
+svc-silkpress.jpg  https://images.unsplash.com/photo-1780504542350-5078d4080081
+svc-steam.jpg  https://images.unsplash.com/photo-1519699047748-de8e457a634e
+svc-cornrows-w.jpg  https://images.unsplash.com/photo-1650560884644-7713e21bd062
+svc-locs-w.jpg  https://images.unsplash.com/photo-1559464359-4ed0f57c3950
+svc-wig.jpg  https://images.unsplash.com/photo-1779181672443-3ef35f1d8953
+svc-weave.jpg  https://images.unsplash.com/photo-1611579742682-f65d14fab39b
+svc-hottowel.jpg  https://images.unsplash.com/photo-1653875700329-a7c8aca94c95
+svc-cornrows-m.jpg  https://images.unsplash.com/photo-1641189902610-1b661e8690c7
+svc-kid-detangle.jpg  https://images.unsplash.com/photo-1713942590162-1963fc73a304
+svc-kid-locs.jpg  https://images.unsplash.com/photo-1706480347136-ec79db9d6e93
+svc-acrylic.jpg  https://images.unsplash.com/photo-1720343409646-960f6dcccae3
+svc-pedicure.jpg  https://images.unsplash.com/photo-1519419451778-14599a49ec41
+svc-mens-hands.jpg  https://images.unsplash.com/photo-1624625021373-9ffc038e9d3d
+svc-brows.jpg  https://images.unsplash.com/photo-1783013951101-2d9ed3eac234
+svc-lashes.jpg  https://images.unsplash.com/photo-1735151226446-1d364b4adc2f
+svc-bridal.jpg  https://images.unsplash.com/photo-1648671095483-254807669fcd
+shop/beard-oil.jpg  https://images.unsplash.com/photo-1673350963924-cb4267d9b6eb
+shop/wave-brush.jpg  https://images.unsplash.com/photo-1557873443-a6d8870b1768
+shop/pomade-comb.jpg  https://images.unsplash.com/photo-1590159763121-7c9fd312190d
+shop/paddle-brush.jpg  https://images.unsplash.com/photo-1669646100849-8c064be27dfd
+shop/wig-*, unit-*, bundle-*, ext-*, care-*, acc-*: reused from the Xclusivehairdeals sample (Unsplash).
