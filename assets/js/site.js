@@ -26,7 +26,7 @@
   };
   function logo(sub) {
     return '<a class="logo" href="index.html" aria-label="Adepa House, home">' + A.mark() +
-      '<span class="logo__word"><b>Adepa</b>' + (sub ? '<i>House, East Legon</i>' : '') + '</span></a>';
+      '<span class="logo__word"><b>Adepa House</b>' + (sub ? '<i>Airport Residential, Accra</i>' : '') + '</span></a>';
   }
 
   /* ---------- bag: services to book + products to buy ---------- */
@@ -58,7 +58,7 @@
     document.querySelectorAll('[data-add-svc]').forEach(function (el) {
       var on = b.s.indexOf(el.dataset.addSvc) > -1;
       el.setAttribute('aria-pressed', String(on));
-      el.innerHTML = (on ? ICON.check : ICON.plus) + '<span>' + (on ? 'Added' : (el.dataset.label || 'Add')) + '</span>';
+      el.innerHTML = (on ? ICON.check : ICON.plus) + '<span>' + (on ? (el.dataset.on || 'Added') : (el.dataset.label || 'Add')) + '</span>';
     });
     document.querySelectorAll('[data-add-prod]').forEach(function (el) {
       var q = b.p[el.dataset.addProd] || 0;
@@ -75,7 +75,7 @@
       e.preventDefault();
       var id = s.dataset.addSvc, f = A.find(id);
       if (A.bag.has(id)) { A.bag.removeSvc(id); toast(f.item.name + ' removed'); }
-      else { A.bag.addSvc(id); toast(f.item.name + ' added to your booking'); bump(); }
+      else { A.bag.addSvc(id); toast(f.item.name + ' added to your reservation'); bump(); }
     } else if (p) {
       e.preventDefault();
       var pr = A.product(p.dataset.addProd);
@@ -85,7 +85,7 @@
   document.addEventListener('bag', function () { syncAdds(); if (bag.classList.contains('is-open')) drawBag(); });
 
   /* ---------- nav ---------- */
-  var LINKS = [['services', 'Services'], ['shop', 'Shop'], ['lookbook', 'Lookbook'], ['about', 'About'], ['index.html#visit', 'Visit']];
+  var LINKS = [['services', 'The Menu'], ['shop', 'Boutique'], ['lookbook', 'Lookbook'], ['about', 'The House'], ['index.html#visit', 'Visit']];
   function href(k) { return k.indexOf('.html') > -1 ? k : k + '.html'; }
   function cur(k) { return k === page ? ' aria-current="page"' : ''; }
 
@@ -96,8 +96,8 @@
       LINKS.map(function (l) { return '<a href="' + href(l[0]) + '"' + cur(l[0]) + '>' + l[1] + '</a>'; }).join('') +
     '</nav>' +
     '<div class="nav__right">' +
-      '<button class="bagbtn" aria-label="Open your bag">' + ICON.bag + '<span class="bagbtn__n">0</span></button>' +
-      '<a class="btn btn--cream btn--sm" href="book.html">Book</a>' +
+      '<button class="bagbtn" aria-label="Open your selection">' + ICON.bag + '<span class="bagbtn__n">0</span></button>' +
+      '<a class="btn btn--champ btn--sm" href="book.html">Reserve</a>' +
       '<button class="burger" aria-label="Open menu" aria-expanded="false"></button>' +
     '</div>';
   document.body.prepend(nav);
@@ -125,7 +125,7 @@
   menu.innerHTML =
     '<div class="menu__top">' + logo(false) + '<button class="menu__close">Close</button></div>' +
     '<nav class="menu__list" aria-label="Menu">' +
-      [['index', 'Home']].concat(LINKS).concat([['book', 'Book a chair']]).map(function (l) {
+      [['index', 'Home']].concat(LINKS).concat([['book', 'Reserve']]).map(function (l) {
         return '<span class="ln"><span><a href="' + href(l[0]) + '">' + l[1] + '</a></span></span>';
       }).join('') +
     '</nav>' +
@@ -156,8 +156,8 @@
   var bag = document.createElement('div');
   bag.className = 'bag';
   bag.setAttribute('aria-hidden', 'true');
-  bag.innerHTML = '<div class="bag__veil"></div><aside class="bag__panel" role="dialog" aria-modal="true" aria-label="Your bag">' +
-    '<div class="bag__head"><h2>Your bag</h2><button class="bag__x">Close</button></div>' +
+  bag.innerHTML = '<div class="bag__veil"></div><aside class="bag__panel" role="dialog" aria-modal="true" aria-label="Your selection">' +
+    '<div class="bag__head"><h2>Your selection</h2><button class="bag__x">Close</button></div>' +
     '<div class="bag__body"></div><div class="bag__foot"></div></aside>';
   document.body.appendChild(bag);
   var lastFocus = null;
@@ -165,22 +165,22 @@
     var b = read(), t = A.bag.totals(), body = bag.querySelector('.bag__body'), foot = bag.querySelector('.bag__foot');
     var pids = Object.keys(b.p);
     if (!b.s.length && !pids.length) {
-      body.innerHTML = '<div class="bag__empty"><h3 class="d-m">Nothing here yet.</h3><p>Add a service to book, or something from the shop.</p>' +
-        '<div><a class="btn btn--navy" href="services.html">Browse services</a><a class="btn btn--line" href="shop.html">Visit the shop</a></div></div>';
+      body.innerHTML = '<div class="bag__empty"><h3 class="h-m">Nothing here yet.</h3><p>Add a treatment from the menu, or something from the boutique.</p>' +
+        '<div><a class="btn btn--ink" href="services.html">View the menu</a><a class="btn btn--line" href="shop.html">Visit the boutique</a></div></div>';
       foot.style.display = 'none';
       return;
     }
     foot.style.display = '';
     var html = '';
     if (b.s.length) {
-      html += '<div class="bag__group"><h3>To book</h3>' + b.s.map(function (id) {
+      html += '<div class="bag__group"><h3>Treatments</h3>' + b.s.map(function (id) {
         var f = A.find(id); if (!f) return '';
         return '<div class="bag__item"><img src="assets/img/s/' + f.item.img + '" alt=""><div><b>' + f.item.name + '</b><small>' + f.group.name + ', about ' + A.dur(f.item.mins) + '</small></div>' +
           '<div class="end">' + (f.item.from ? 'from ' : '') + A.money(f.item.price) + '<button class="bag__rm" data-rm-svc="' + id + '">Remove</button></div></div>';
       }).join('') + '</div>';
     }
     if (pids.length) {
-      html += '<div class="bag__group"><h3>To buy</h3>' + pids.map(function (id) {
+      html += '<div class="bag__group"><h3>Boutique</h3>' + pids.map(function (id) {
         var p = A.product(id); if (!p) return '';
         return '<div class="bag__item"><img src="assets/img/s/' + p.img + '" alt=""><div><b>' + p.name + '</b><small>' + A.money(p.price) + ' each</small></div>' +
           '<div class="end">' + A.money(p.price * b.p[id]) + '<span class="qty"><button data-qty="' + id + '" data-d="-1" aria-label="One less">−</button><span>' + b.p[id] + '</span><button data-qty="' + id + '" data-d="1" aria-label="One more">+</button></span></div></div>';
@@ -188,8 +188,8 @@
     }
     body.innerHTML = html;
     foot.innerHTML = '<div class="bag__sum"><span>Total' + (t.from ? ', from' : '') + '</span><b>' + A.money(t.svc + t.prod) + '</b></div>' +
-      '<a class="btn btn--navy btn--block" href="book.html">' + (b.s.length ? 'Choose a time' : 'Checkout') + '</a>' +
-      '<p class="bag__hint">' + (b.s.length ? 'Services are paid at the salon. Pick your stylist and time next.' : 'Collect at the salon or have it delivered in Accra.') + '</p>';
+      '<a class="btn btn--ink btn--block" href="book.html">' + (b.s.length ? 'Choose a time' : 'Checkout') + '</a>' +
+      '<p class="bag__hint">' + (b.s.length ? 'Treatments are settled at the house. Choose your artist and time next.' : 'Collect at the house or have it couriered within Accra.') + '</p>';
   }
   function setBag(on) {
     if (on) { drawBag(); lastFocus = document.activeElement; toastEl.classList.remove('is-on'); }
@@ -215,7 +215,7 @@
   /* ---------- toast ---------- */
   var toastEl = document.createElement('div');
   toastEl.className = 'toast'; toastEl.setAttribute('role', 'status');
-  toastEl.innerHTML = '<span></span><button type="button">View bag</button>';
+  toastEl.innerHTML = '<span></span><button type="button">View selection</button>';
   document.body.appendChild(toastEl);
   toastEl.querySelector('button').addEventListener('click', function () { toastEl.classList.remove('is-on'); setBag(true); });
   var toastT;
@@ -277,16 +277,16 @@
     footSlot.className = 'foot';
     footSlot.innerHTML =
       '<div class="wrap">' +
-        '<div class="foot__cta glass-d"><h2 class="d-l">Your chair<br>is ready.</h2><div style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn btn--cream" href="book.html">Book a chair</a><a class="btn btn--glass" href="shop.html">Visit the shop</a></div></div>' +
+        '<div class="foot__cta glass-d"><h2 class="h-l">Your chair<br>is waiting.</h2><div style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn btn--champ" href="book.html">Reserve a visit</a><a class="btn btn--glass" href="shop.html">The boutique</a></div></div>' +
         '<div class="foot__cols">' +
-          '<div>' + logo(true) + '<p>' + B.address + '</p><p>Monday to Saturday, ' + A.clock(A.hours[1][0]) + ' to ' + A.clock(A.hours[1][1]) + '</p><p>Sunday, ' + A.clock(A.hours[0][0]) + ' to ' + A.clock(A.hours[0][1]) + '</p></div>' +
-          '<div><h4>Salon</h4><a href="services.html">Services and prices</a><a href="shop.html">Shop</a><a href="lookbook.html">Lookbook</a><a href="about.html">About us</a><a href="book.html">Book a chair</a></div>' +
-          '<div><h4>Talk to us</h4><a href="tel:' + B.tel + '">' + B.phone + '</a><a href="https://wa.me/' + B.whatsapp + '">WhatsApp</a><a href="mailto:' + B.email + '">' + B.email + '</a></div>' +
+          '<div>' + logo(true) + '<p>' + B.address + '</p><p>Monday to Saturday, ' + A.clock(A.hours[1][0]) + ' to ' + A.clock(A.hours[1][1]) + '</p><p>Sunday, ' + A.clock(A.hours[0][0]) + ' to ' + A.clock(A.hours[0][1]) + '</p><p>Complimentary valet parking</p></div>' +
+          '<div><h4>The house</h4><a href="services.html">The menu</a><a href="shop.html">Boutique</a><a href="lookbook.html">Lookbook</a><a href="about.html">Our story</a><a href="book.html">Reserve</a></div>' +
+          '<div><h4>Concierge</h4><a href="tel:' + B.tel + '">' + B.phone + '</a><a href="https://wa.me/' + B.whatsapp + '">WhatsApp</a><a href="mailto:' + B.email + '">' + B.email + '</a></div>' +
           '<div><h4>Follow</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a></div>' +
         '</div>' +
-        '<div class="foot__legal"><span>© ' + new Date().getFullYear() + ' Adepa House. All rights reserved.</span><span>Walk-ins welcome. Booking gets you seated first.</span></div>' +
+        '<div class="foot__legal"><span>© ' + new Date().getFullYear() + ' Adepa House. All rights reserved.</span><span>By appointment. Walk-ins seated when a chair is free.</span></div>' +
       '</div>' +
-      '<div class="foot__mark" aria-hidden="true">Adepa</div>';
+      '<div class="foot__mark" aria-hidden="true">Adepa House</div>';
   }
 
   /* ---------- nav behaviour on scroll ---------- */

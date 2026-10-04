@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lookbook | Adepa House</title>
-  <meta name="description" content="Braids, fades, locs, afros, children’s styles and nails. Browse the Adepa House lookbook and add the look you want to your booking.">
-  <meta name="theme-color" content="#0B1437">
+  <meta name="description" content="Silk presses, braids, wigs, gentlemen’s cuts, children’s styles, nails and make-up from Adepa House, Airport Residential. Add any look to your reservation.">
+  <meta name="theme-color" content="#0A0F1C">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/bodoni-moda-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/jost-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body data-page="lookbook">
@@ -15,19 +16,19 @@
   <main>
     <section class="phead">
       <div class="wrap">
-        <h1 class="d-xl" data-lines="manual">Pick a look.<br>Show us.</h1>
-        <p class="t-lead muted" data-rise>Open any photo and add it to your booking. A picture is the fastest way to tell a stylist what you want.</p>
+        <h1 class="h-xl" data-lines="manual">The lookbook.</h1>
+        <p class="lead muted" data-rise>Open any photograph and add it to your reservation. A picture is the quickest way to tell your stylist what you have in mind.</p>
       </div>
     </section>
 
-    <section class="sec bg-mist" style="padding-top:clamp(36px,5vw,60px)">
+    <section class="sec s-porcelain" style="padding-top:clamp(40px,5vw,64px)">
       <div class="wrap">
         <div class="tabs glass" id="lbTabs" role="group" aria-label="Filter the lookbook">
           <button class="tab" aria-pressed="true" data-who="all">Everything</button>
           <button class="tab" aria-pressed="false" data-who="women">Women</button>
-          <button class="tab" aria-pressed="false" data-who="men">Men</button>
-          <button class="tab" aria-pressed="false" data-who="kids">Kids</button>
-          <button class="tab" aria-pressed="false" data-who="beauty">Nails and beauty</button>
+          <button class="tab" aria-pressed="false" data-who="men">Gentlemen</button>
+          <button class="tab" aria-pressed="false" data-who="kids">Children</button>
+          <button class="tab" aria-pressed="false" data-who="beauty">Beauty</button>
         </div>
         <div class="book-grid" id="lbGrid"></div>
       </div>
@@ -36,12 +37,12 @@
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
     <button class="lightbox__x" id="lbClose">Close</button>
-    <button class="arrow" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="arrow" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="17" height="17"><path d="M15 5l-7 7 7 7"/></svg></button>
     <figure>
-      <img id="lbImg" src="" alt="">
-      <figcaption class="glass-d"><span id="lbName"></span><button type="button" class="add" id="lbAdd" data-add-svc="w7" data-label="Add to booking"></button></figcaption>
+      <img id="lbImg" alt="">
+      <figcaption class="glass-d"><span id="lbName"></span><button type="button" class="add" id="lbAdd" data-add-svc="w1" data-label="Add to reservation"></button></figcaption>
     </figure>
-    <button class="arrow" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 5l7 7-7 7"/></svg></button>
+    <button class="arrow" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="17" height="17"><path d="M9 5l7 7-7 7"/></svg></button>
   </div>
 
   <footer data-foot></footer>

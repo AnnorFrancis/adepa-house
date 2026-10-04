@@ -1,4 +1,4 @@
-/* ADEPA HOUSE — services, shop, lookbook and about pages. */
+/* ADEPA HOUSE — the menu, the boutique, the lookbook and the house. */
 (function () {
   'use strict';
   var A = window.ADEPA, anim = A.canAnim, IMG = 'assets/img/';
@@ -9,27 +9,27 @@
   function cardsIn(cards) {
     A.syncAdds();
     if (!anim) return;
-    gsap.fromTo(cards, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .7, ease: 'power3.out', stagger: .045, clearProps: 'transform,opacity' });
+    gsap.fromTo(cards, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .8, ease: 'power3.out', stagger: .05, clearProps: 'transform,opacity' });
     if (window.ScrollTrigger) ScrollTrigger.refresh();
   }
   /* if the reader is far down the list, lift them back to the top of it */
   function backToList(anchor) {
-    var top = anchor.getBoundingClientRect().top + window.scrollY - 170;
+    var top = anchor.getBoundingClientRect().top + window.scrollY - 180;
     if (window.scrollY > top + 40) { if (A.lenis) A.lenis.scrollTo(top); else window.scrollTo({ top: top, behavior: 'smooth' }); }
   }
 
-  /* ================= SERVICES ================= */
+  /* ================= THE MENU ================= */
   if (page === 'services') {
     var current = null, sub = 'All';
     $('seg').innerHTML = A.groups.map(function (g) {
-      return '<button type="button" data-g="' + g.id + '" aria-pressed="false">' + g.name + ' <small>' + g.items.length + '</small></button>';
+      return '<button type="button" data-g="' + g.id + '" aria-pressed="false">' + (g.tab || g.short) + ' <small>' + g.items.length + '</small></button>';
     }).join('');
 
     function card(it) {
-      return '<article class="svc-card glass" data-sub="' + it.sub + '">' +
-        '<div class="ph"><img src="' + IMG + 's/' + it.img + '" alt="' + it.name + '" loading="lazy"><span class="svc-card__time">About ' + A.dur(it.mins) + '</span></div>' +
-        '<div class="svc-card__body"><h3>' + it.name + '</h3><p>' + it.note + '</p>' +
-        '<div class="svc-card__foot"><span class="svc-card__price">' + (it.from ? '<small>from</small>' : '') + A.money(it.price) + '</span>' + A.addBtn('svc', it.id) + '</div></div></article>';
+      return '<article class="svc-card" data-sub="' + it.sub + '">' +
+        '<div class="ph"><img src="' + IMG + 's/' + it.img + '" alt="' + it.name + '" loading="lazy"><span class="chip-on-img">About ' + A.dur(it.mins) + '</span></div>' +
+        '<div class="card__body"><h3>' + it.name + '</h3><p>' + it.note + '</p>' +
+        '<div class="card__foot"><span class="price">' + (it.from ? '<small>from</small>' : '') + A.money(it.price) + '</span>' + A.addBtn('svc', it.id) + '</div></div></article>';
     }
     function drawGrid() {
       var g = A.groups.filter(function (x) { return x.id === current; })[0];
@@ -60,9 +60,10 @@
     select(location.hash.slice(1), false);
   }
 
-  /* ================= SHOP ================= */
+  /* ================= THE BOUTIQUE ================= */
   if (page === 'shop') {
     var cat = 'all';
+    var PAIR = { w8: ['Add the install', 'Install added'], w9: ['Add wig construction', 'Construction added'], w3: ['Add a scalp ritual', 'Scalp ritual added'], w1: ['Add a silk press', 'Silk press added'], m5: ['Add a beard sculpt', 'Beard sculpt added'] };
     $('shopSeg').innerHTML = [{ id: 'all', name: 'Everything' }].concat(A.shopCats).map(function (c) {
       var n = c.id === 'all' ? A.products.length : A.products.filter(function (p) { return p.cat === c.id; }).length;
       return '<button type="button" data-c="' + c.id + '" aria-pressed="' + (c.id === 'all') + '">' + c.name + ' <small>' + n + '</small></button>';
@@ -72,10 +73,10 @@
       $('shopGrid').innerHTML = list.map(function (p) {
         var c = A.shopCats.filter(function (x) { return x.id === p.cat; })[0];
         var pair = p.pair ? A.find(p.pair) : null;
-        return '<article class="prod glass"><div class="ph"><img src="' + IMG + 's/' + p.img + '" alt="' + p.name + '" loading="lazy"><span class="prod__tag">' + c.name + '</span></div>' +
-          '<div class="prod__body"><h3>' + p.name + '</h3>' +
-          (pair ? '<p class="prod__pair"><button type="button" data-add-svc="' + pair.item.id + '" data-label="Book a ' + pair.item.name.toLowerCase() + ' too"></button></p>' : '') +
-          '<div class="prod__row"><span class="prod__price">' + A.money(p.price) + '</span>' + A.addBtn('prod', p.id) + '</div></div></article>';
+        return '<article class="prod glass"><div class="ph"><img src="' + IMG + 's/' + p.img + '" alt="' + p.name + '" loading="lazy"><span class="chip-on-img">' + c.name + '</span></div>' +
+          '<div class="card__body"><h3>' + p.name + '</h3><p>' + p.note + '</p>' +
+          (pair ? '<p class="prod__pair"><button type="button" data-add-svc="' + pair.item.id + '" data-label="' + (PAIR[pair.item.id] ? PAIR[pair.item.id][0] : 'Add ' + pair.item.name) + '" data-on="' + (PAIR[pair.item.id] ? PAIR[pair.item.id][1] : pair.item.name + ' added') + '"></button></p>' : '') +
+          '<div class="card__foot"><span class="price">' + A.money(p.price) + '</span>' + A.addBtn('prod', p.id) + '</div></div></article>';
       }).join('');
       cardsIn($('shopGrid').children);
     }
@@ -90,26 +91,16 @@
 
   /* ================= LOOKBOOK ================= */
   if (page === 'lookbook') {
-    var SHOTS = [
-      ['her-knotless', 'Knotless braids', 'women', 'w7'], ['him-fade-beard', 'Skin fade and beard', 'men', 'm3'],
-      ['kid-girl-long-braids', 'Girl’s long braids', 'kids', 'k4'], ['her-afro', 'Shaped afro', 'women', 'w14'],
-      ['him-high-top', 'High-top', 'men', 'm6'], ['nails-gel-dark', 'Gel manicure', 'beauty', 'b2'],
-      ['her-braided-bun', 'Braided bun', 'women', 'w6'], ['kid-boy-cornrows', 'Boy’s cornrows', 'kids', 'k7'],
-      ['him-locs', 'Locs', 'men', 'm9'], ['her-jumbo-braids', 'Jumbo braids', 'women', 'w8'],
-      ['him-waves', 'Waves', 'men', 'm7'], ['beauty-makeup', 'Soft glam make-up', 'beauty', 'b9'],
-      ['her-box-braids', 'Box braids', 'women', 'w6'], ['him-low-cut', 'Low cut', 'men', 'm1'],
-      ['kid-girl-cornrows', 'Girl’s cornrows', 'kids', 'k3'], ['her-blonde-crop', 'Blonde crop', 'women', 'w13'],
-      ['him-starter-locs', 'Starter locs', 'men', 'm8'], ['her-faux-locs-smile', 'Faux locs', 'women', 'w9'],
-      ['svc-acrylic', 'Acrylic full set', 'beauty', 'b3'], ['him-colour', 'Hair colour', 'men', 'm10'],
-      ['her-stitch-cornrows', 'Stitch braids', 'women', 'w5'], ['kid-boy-low-cut', 'Boy’s haircut', 'kids', 'k1'],
-      ['svc-silkpress', 'Silk press', 'women', 'w2'], ['svc-cornrows-m', 'Men’s cornrows', 'men', 'm11'],
-      ['her-afro-red', 'Full afro', 'women', 'w3'], ['svc-kid-locs', 'Kids’ locs', 'kids', 'k6'],
-      ['svc-wig', 'Wig install', 'women', 'w11'], ['svc-lashes', 'Classic lashes', 'beauty', 'b8'],
-      ['her-blonde-fringe', 'Blonde fringe', 'women', 'w13'], ['svc-bridal', 'Bridal make-up', 'beauty', 'b10']
-    ];
+    /* every photograph is tied to the treatment that produces it */
+    var ORDER = ['w1', 'm4', 'w5', 'k1', 'b9', 'w13', 'm2', 'w8', 'k3', 'b2', 'w7', 'm3', 'w12', 'k2', 'b8',
+      'w2', 'm10', 'w4', 'k4', 'b4', 'w11', 'm1', 'w15', 'k6', 'b10', 'w10', 'm5', 'w9', 'b7', 'w14'];
+    var SHOTS = ORDER.map(function (id) { var f = A.find(id); return [f.item.img, f.item.name, f.group.id, id]; });
+    SHOTS.splice(9, 0, ['lx-pearl-bun.jpg', 'Pearl chignon', 'women', 'w14']);
+    SHOTS.splice(20, 0, ['lx-glow.jpg', 'Bridal glow', 'beauty', 'b10']);
+
     var grid = $('lbGrid');
     grid.innerHTML = SHOTS.map(function (s, i) {
-      return '<button data-i="' + i + '" data-who="' + s[2] + '" aria-label="Open photo: ' + s[1] + '"><img src="' + IMG + 's/' + s[0] + '.jpg" alt="' + s[1] + '" loading="lazy"><span>' + s[1] + '</span></button>';
+      return '<button data-i="' + i + '" data-who="' + s[2] + '" aria-label="Open photo: ' + s[1] + '"><img src="' + IMG + 's/' + s[0] + '" alt="' + s[1] + '" loading="lazy"><span>' + s[1] + '</span></button>';
     }).join('');
     var cells = Array.prototype.slice.call(grid.children), visible = cells.slice();
     var lbTabs = Array.prototype.slice.call(document.querySelectorAll('#lbTabs .tab'));
@@ -122,7 +113,7 @@
         if (!anim) { swap(); return; }
         gsap.to(cells, { opacity: 0, duration: .2, overwrite: true, onComplete: function () {
           swap();
-          gsap.fromTo(visible, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .6, ease: 'power3.out', stagger: .035, clearProps: 'transform' });
+          gsap.fromTo(visible, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .7, ease: 'power3.out', stagger: .035, clearProps: 'transform' });
           if (window.ScrollTrigger) ScrollTrigger.refresh();
         } });
       });
@@ -131,7 +122,7 @@
       gsap.registerPlugin(ScrollTrigger);
       gsap.set(cells, { opacity: 0, y: 36 });
       ScrollTrigger.batch(cells, { start: 'top 94%', once: true, onEnter: function (b) {
-        gsap.to(b, { opacity: 1, y: 0, duration: .85, ease: 'power3.out', stagger: .06, clearProps: 'transform' });
+        gsap.to(b, { opacity: 1, y: 0, duration: .9, ease: 'power3.out', stagger: .06, clearProps: 'transform' });
       } });
     }
 
@@ -139,11 +130,11 @@
     function show(n) {
       at = (n + visible.length) % visible.length;
       var s = SHOTS[+visible[at].dataset.i];
-      img.src = IMG + s[0] + '.jpg'; img.alt = s[1];
+      img.src = IMG + s[0]; img.alt = s[1];
       $('lbName').textContent = s[1];
       $('lbAdd').dataset.addSvc = s[3];
       A.syncAdds();
-      if (anim) gsap.fromTo(img, { opacity: 0, scale: .96 }, { opacity: 1, scale: 1, duration: .45, ease: 'power3.out' });
+      if (anim) gsap.fromTo(img, { opacity: 0, scale: .97 }, { opacity: 1, scale: 1, duration: .5, ease: 'power3.out' });
     }
     function close() { box.classList.remove('is-open'); document.body.classList.remove('is-locked'); if (lastFocus) lastFocus.focus(); }
     grid.addEventListener('click', function (e) {
@@ -163,7 +154,7 @@
     });
   }
 
-  /* ================= ABOUT ================= */
+  /* ================= THE HOUSE ================= */
   if (page === 'about') {
     $('teamAll').innerHTML = A.team.map(function (p) {
       return '<article class="person"><div class="ph" data-unmask><img src="' + IMG + 's/' + p.img + '" alt="' + p.name + '" loading="lazy"></div><div class="person__plate glass-d"><h3>' + p.name + '</h3><p>' + p.role + '</p></div></article>';

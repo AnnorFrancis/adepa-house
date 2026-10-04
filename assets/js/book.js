@@ -42,11 +42,11 @@
         '<div class="end">' + (f.item.from ? 'from ' : '') + A.money(f.item.price) + '<button type="button" class="bag__rm" data-rm="' + f.item.id + '">Remove</button></div></div>';
     }).join('');
     $('svcHint').textContent = !M.svcs.length
-      ? (M.prods.length ? 'No services yet. Only buying from the shop? Skip straight to your shop items.' : 'Nothing chosen yet. Pick a service below.')
-      : M.gids.length > 1 ? 'Booking for more than one person? We seat you side by side, so everyone finishes at about the same time.' : 'Add anything else you would like done at the same visit.';
+      ? (M.prods.length ? 'No treatments yet. Only shopping the boutique? Go straight to your pieces below.' : 'Nothing chosen yet. Add a treatment below.')
+      : M.gids.length > 1 ? 'Reserving for the family? We seat you side by side, so everyone is finished at about the same time.' : 'Add anything else you would like at the same visit.';
     if (!M.svcs.length && !M.prods.length) $('svcMore').open = true;
     $('pickGroup').innerHTML = A.groups.map(function (g) {
-      return '<button type="button" class="tab" data-g="' + g.id + '" aria-pressed="' + (st.pickGroup === g.id) + '">' + g.name + '</button>';
+      return '<button type="button" class="tab" data-g="' + g.id + '" aria-pressed="' + (st.pickGroup === g.id) + '">' + (g.tab || g.short) + '</button>';
     }).join('');
     var g = A.groups.filter(function (x) { return x.id === st.pickGroup; })[0];
     var inBag = A.bag.get().s;
@@ -66,7 +66,7 @@
     var list = M.gids.length === 1 ? A.team.filter(function (p) { return p.does.indexOf(M.gids[0]) > -1; }) : [];
     if (st.staff !== 'any' && !list.some(function (p) { return p.id === st.staff; })) st.staff = 'any';
     $('pickStaff').innerHTML =
-      opt('<b>First available</b><span>' + (M.gids.length > 1 ? 'We seat your party side by side' : 'Shortest wait') + '</span>', st.staff === 'any', 'data-p="any"') +
+      opt('<b>First available</b><span>' + (M.gids.length > 1 ? 'Your party, side by side' : 'Shortest wait') + '</span>', st.staff === 'any', 'data-p="any"') +
       list.map(function (p) { return opt('<b>' + p.name + '</b><span>' + p.role + '</span>', st.staff === p.id, 'data-p="' + p.id + '"'); }).join('');
   }
   $('pickStaff').addEventListener('click', function (e) { var b = e.target.closest('[data-p]'); if (b) { st.staff = b.dataset.p; render(); } });
@@ -112,9 +112,9 @@
         '<div class="end">' + A.money(x.p.price * x.q) + '<span class="qty"><button type="button" data-q="' + x.p.id + '" data-d="-1" aria-label="One less">−</button><span>' + x.q + '</span><button type="button" data-q="' + x.p.id + '" data-d="1" aria-label="One more">+</button></span></div></div>';
     }).join('');
     var opts = M.svcs.length
-      ? [['collect', 'Collect at my appointment', 'Waiting at your chair']]
-      : [['collect', 'Collect at the salon', 'Ready in an hour']];
-    opts.push(['deliver', 'Deliver to me', A.money(A.biz.delivery) + ', rider in Accra']);
+      ? [['collect', 'Collect at my visit', 'Waiting at your chair']]
+      : [['collect', 'Collect at the house', 'Ready within the hour']];
+    opts.push(['deliver', 'Courier to me', A.money(A.biz.delivery) + ', anywhere in Accra']);
     if (!st.ful) st.ful = 'collect';
     $('pickFul').innerHTML = opts.map(function (o) { return opt('<b>' + o[1] + '</b><span>' + o[2] + '</span>', st.ful === o[0], 'data-f="' + o[0] + '"'); }).join('');
     $('addrField').hidden = st.ful !== 'deliver';
@@ -129,13 +129,13 @@
   function drawPay(M) {
     var deliver = M.prods.length && st.ful === 'deliver';
     var opts = [
-      ['salon', M.svcs.length ? 'Pay at the salon' : 'Pay when you collect', 'Cash, mobile money or card', deliver],
+      ['salon', M.svcs.length ? 'Settle at the house' : 'Pay when you collect', 'Cash, mobile money or card', deliver],
       ['momo', 'Mobile money now', 'MTN, Telecel or AirtelTigo', false],
       ['card', 'Card now', 'Visa or Mastercard', false]
     ];
     if (!st.pay || (st.pay === 'salon' && deliver)) st.pay = deliver ? 'momo' : 'salon';
     $('pickPay').innerHTML = opts.map(function (o) { return opt('<b>' + o[1] + '</b><span>' + o[2] + '</span>', st.pay === o[0], 'data-pay="' + o[0] + '"' + (o[3] ? ' disabled' : '')); }).join('');
-    $('payHint').textContent = deliver ? 'Delivery orders are paid when you order.' : 'This is a demo: no money is taken and no card details are asked for.';
+    $('payHint').textContent = deliver ? 'Couriered orders are paid when you order.' : 'This is a demo: no money is taken and no card details are asked for.';
   }
   $('pickPay').addEventListener('click', function (e) { var b = e.target.closest('[data-pay]'); if (b && !b.disabled) { st.pay = b.dataset.pay; render(); } });
 
@@ -145,9 +145,9 @@
     return { del: del, all: M.svcTotal + M.prodTotal + del };
   }
   function missing(M) {
-    if (!M.svcs.length && !M.prods.length) return 'Add a service or a shop item to begin.';
+    if (!M.svcs.length && !M.prods.length) return 'Add a treatment or a boutique piece to begin.';
     if (M.svcs.length && st.slot === null) return 'Pick a day and a time.';
-    if (M.prods.length && st.ful === 'deliver' && $('fAddr').value.trim().length < 4) return 'Add the delivery address.';
+    if (M.prods.length && st.ful === 'deliver' && $('fAddr').value.trim().length < 4) return 'Add the courier address.';
     if ($('fName').value.trim().length < 2 || $('fPhone').value.replace(/\D/g, '').length < 9) return 'Add your name and phone number.';
     return '';
   }
@@ -155,7 +155,7 @@
     var T = totals(M), rows = [];
     M.svcs.forEach(function (f) { rows.push([f.item.name, (f.item.from ? 'from ' : '') + A.money(f.item.price)]); });
     M.prods.forEach(function (x) { rows.push([x.p.name + (x.q > 1 ? ' × ' + x.q : ''), A.money(x.p.price * x.q)]); });
-    if (T.del) rows.push(['Delivery', A.money(T.del)]);
+    if (T.del) rows.push(['Courier', A.money(T.del)]);
     if (M.svcs.length) {
       var p = st.staff === 'any' ? 'First available' : A.team.filter(function (x) { return x.id === st.staff; })[0].name;
       rows.push(['With', p]);
@@ -163,10 +163,10 @@
     }
     $('slipLines').innerHTML = rows.length ? rows.map(function (r) { return '<div><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>'; }).join('') : '<div><dt>Nothing chosen yet</dt><dd></dd></div>';
     $('sTotal').textContent = (M.from ? 'from ' : '') + A.money(T.all);
-    $('sSplit').textContent = !rows.length ? '' : st.pay === 'salon' ? 'Nothing to pay now. Pay at the salon.' : 'Paid now by ' + (st.pay === 'momo' ? 'mobile money' : 'card') + '.';
+    $('sSplit').textContent = !rows.length ? '' : st.pay === 'salon' ? 'Nothing to pay now. Settle at the house.' : 'Paid now by ' + (st.pay === 'momo' ? 'mobile money' : 'card') + '.';
     var need = missing(M);
     $('bkGo').disabled = !!need;
-    $('bkGo').textContent = st.pay === 'salon' ? (M.svcs.length ? 'Confirm booking' : 'Place order') : 'Pay ' + A.money(T.all);
+    $('bkGo').textContent = st.pay === 'salon' ? (M.svcs.length ? 'Confirm reservation' : 'Place order') : 'Pay ' + A.money(T.all);
     $('bkHint').textContent = need || 'All set.';
   }
 
@@ -221,22 +221,22 @@
     var when = M.svcs.length ? fmtDay(days[st.day]) + ', ' + fmtTime(st.slot) : '';
     var rows = [['Reference', ref]];
     if (M.svcs.length) {
-      rows.push(['Services', M.svcs.map(function (f) { return f.item.name; }).join(', ')]);
+      rows.push(['Treatments', M.svcs.map(function (f) { return f.item.name; }).join(', ')]);
       rows.push(['With', who]); rows.push(['When', when]);
     }
     if (M.prods.length) {
-      rows.push(['Shop items', M.prods.map(function (x) { return x.p.name + (x.q > 1 ? ' × ' + x.q : ''); }).join(', ')]);
-      rows.push([st.ful === 'deliver' ? 'Delivery to' : 'Collection', st.ful === 'deliver' ? $('fAddr').value.trim() : (M.svcs.length ? 'At your appointment' : 'At the salon, ready in an hour')]);
+      rows.push(['Boutique', M.prods.map(function (x) { return x.p.name + (x.q > 1 ? ' × ' + x.q : ''); }).join(', ')]);
+      rows.push([st.ful === 'deliver' ? 'Courier to' : 'Collection', st.ful === 'deliver' ? $('fAddr').value.trim() : (M.svcs.length ? 'At your visit' : 'At the house, ready within the hour')]);
     }
     rows.push(['Total', (M.from ? 'from ' : '') + A.money(T.all)]);
-    rows.push(['Payment', st.pay === 'salon' ? 'At the salon' : 'Paid by ' + (st.pay === 'momo' ? 'mobile money' : 'card')]);
+    rows.push(['Payment', st.pay === 'salon' ? 'At the house' : 'Paid by ' + (st.pay === 'momo' ? 'mobile money' : 'card')]);
 
-    $('doneTitle').textContent = M.svcs.length ? 'You are booked.' : 'Order placed.';
+    $('doneTitle').textContent = M.svcs.length ? 'You are reserved.' : 'Order placed.';
     $('doneLead').textContent = 'Thank you, ' + first + '. ' + (M.svcs.length ? 'Your chair is held for fifteen minutes past the hour. ' : '') + 'We will message ' + $('fPhone').value.trim() + ' to confirm.';
     $('doneCard').innerHTML = rows.map(function (r) { return '<div><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>'; }).join('');
     $('doneWa').href = 'https://wa.me/' + A.biz.whatsapp + '?text=' + encodeURIComponent(
       'Hello Adepa House, this is ' + $('fName').value.trim() + '. Reference ' + ref + '. ' +
-      (M.svcs.length ? 'Booked: ' + M.svcs.map(function (f) { return f.item.name; }).join(', ') + ' on ' + when + '. ' : '') +
+      (M.svcs.length ? 'Reserved: ' + M.svcs.map(function (f) { return f.item.name; }).join(', ') + ' on ' + when + '. ' : '') +
       (M.prods.length ? 'Shop items: ' + M.prods.map(function (x) { return x.p.name + ' x' + x.q; }).join(', ') + '. ' : ''));
 
     A.bag.clear();

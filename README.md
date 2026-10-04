@@ -1,8 +1,11 @@
-# Adepa House — unisex salon website (sample)
+# Adepa House — luxury hair and beauty house (sample website)
 
-A six-page sample site for a unisex family salon (women, men, children, nails and beauty) that
-also sells wigs, hair and grooming products. Visitors can add services and products to one bag,
-choose a stylist and a time, collect or get delivery, and pay at the salon or by mobile money.
+A six-page sample site for a private, high-end hair and beauty house in Airport Residential,
+Accra, with four rooms: the Salon (women), the Grooming Room (gentlemen), the Little Suite
+(children) and the Beauty Room (nails, lashes, brows and make-up). A small boutique sells
+raw-hair wigs, bundles and professional hair care. Visitors add treatments and boutique pieces
+to one selection, choose an artist and a time, collect at the house or have it couriered, and
+settle at the house or pay by mobile money.
 
 Plain HTML, CSS and JavaScript with GSAP, ScrollTrigger and Lenis saved locally. No build step.
 
@@ -15,27 +18,27 @@ Double-click `OPEN-WEBSITE.bat`, or serve the folder (`py -m http.server 4190`) 
 
 | Page | What is on it |
 |---|---|
-| `index.html` | Intro with the logo, drifting photo-wall hero with live open/closed status, Women / Men / Kids panels, slideshow, numbered style chart, shop teaser, team, reviews, hours and directions |
-| `services.html` | Every service as a photo card with price, duration and an Add button, grouped by Women, Men, Kids and Nails and beauty, with filters |
-| `shop.html` | 18 products in four categories, each with an Add button and a matching service suggestion |
-| `lookbook.html` | 30 photos, filterable, with a full-screen viewer and "Add to booking" |
-| `about.html` | Why the salon is unisex, how it works, the children's corner, the team |
-| `book.html` | One checkout for services and products: stylist, time, collect or deliver, details, payment, confirmation |
+| `index.html` | Cinematic intro, photo-wall hero with live open/closed status, the four rooms, signature services, a visit slideshow, signature looks, the boutique, the artists, client words, hours and directions |
+| `services.html` | The full menu as photo cards with price, duration and an Add button, by room, with filters |
+| `shop.html` | The boutique: 15 pieces in three categories, each with a matching treatment suggestion |
+| `lookbook.html` | 32 photographs, filterable, with a full-screen viewer and "Add to reservation" |
+| `about.html` | The story of the house, how clients are looked after, the Little Suite, the artists |
+| `book.html` | One checkout for treatments and boutique pieces: artist, time, collect or courier, details, payment, confirmation |
 
 ## Changing it for a real client
 
-Almost everything lives in `assets/js/data.js`: business details, opening hours, services and
-prices (each with its own photo), shop products, the style chart and the team. Colours and type
-sizes are the variables at the top of `assets/css/site.css`.
+Almost everything lives in `assets/js/data.js`: business details, opening hours, treatments and
+prices (each with its own photo), boutique products, signature looks and the team. Colours and
+type are the variables at the top of `assets/css/site.css`.
 
 ## What is placeholder
 
-The salon name, address, phone number, prices, staff names and customer reviews are invented
-for the sample. Payments are simulated: no money moves and no card details are asked for.
-Bookings and orders are not sent anywhere yet; the confirmation offers a pre-filled WhatsApp
-message.
+The name, address, phone number, prices, staff names and client words are invented for the
+sample. Payments are simulated: no money moves and no card details are asked for. Reservations
+and orders are not sent anywhere yet; the confirmation offers a pre-filled WhatsApp message.
 
-## Photos
+## Photos and fonts
 
-All photographs are from Unsplash under the Unsplash licence. Sources are listed in
-`assets/img/CREDITS.txt`. `assets/img/s/` holds lighter copies used in grids.
+Photographs are from Unsplash under the Unsplash licence; sources are in
+`assets/img/CREDITS.txt`. `assets/img/s/` holds lighter copies used in grids. Fonts are Bodoni
+Moda and Jost (SIL Open Font License), self-hosted in `assets/fonts/`.
