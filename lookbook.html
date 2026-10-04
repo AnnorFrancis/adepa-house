@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lookbook | Adepa House</title>
+  <meta name="description" content="Braids, fades, locs, afros, children’s styles and nails. Browse the Adepa House lookbook and book the look you want.">
+  <meta name="theme-color" content="#0B1437">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230B1437'/><path d='M20 48 30 16h4l10 32h-6l-2-7H28l-2 7zm9.500-12h5L32 27z' fill='%23FFC72C'/></svg>">
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="lookbook">
+
+  <main>
+    <section class="phead" style="padding-bottom:0">
+      <div class="wrap">
+        <h1 class="d-xl" data-lines="manual">Pick a look.<br>Show us.</h1>
+        <p class="t-lead muted" data-rise>Save one to your phone, or open it and book straight from the photo. A picture is the fastest way to tell a stylist what you want.</p>
+      </div>
+    </section>
+
+    <section class="sec" style="padding-top:clamp(36px,5vw,64px)">
+      <div class="wrap">
+        <div class="tabs" id="lbTabs" role="group" aria-label="Filter the lookbook">
+          <button class="tab" aria-pressed="true" data-who="all">Everything</button>
+          <button class="tab" aria-pressed="false" data-who="women">Women</button>
+          <button class="tab" aria-pressed="false" data-who="men">Men</button>
+          <button class="tab" aria-pressed="false" data-who="kids">Kids</button>
+          <button class="tab" aria-pressed="false" data-who="beauty">Nails and beauty</button>
+        </div>
+        <div class="book-grid" id="lbGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox__x" id="lbClose">Close</button>
+    <button class="arrow" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <figure>
+      <img id="lbImg" src="" alt="">
+      <figcaption><span id="lbName"></span><a class="btn btn--sun btn--sm" id="lbBook" href="book.html">Book this look</a></figcaption>
+    </figure>
+    <button class="arrow" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+
+  <footer data-foot></footer>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/pages.js"></script>
+</body>
+</html>
