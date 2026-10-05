@@ -39,9 +39,7 @@ lx-space-chairs.jpg  https://images.unsplash.com/photo-1706629503634-2de20b65080
 lx-space-basin.jpg  https://images.unsplash.com/photo-1576698483491-8c43f0862543
 lx-space-groom.jpg  https://images.unsplash.com/photo-1628852527195-29a8f3f4cdbe
 lx-space-groom2.jpg  https://images.unsplash.com/photo-1781455793310-8427c96454c7
-lx-space-spa.jpg  https://images.unsplash.com/photo-1693578538512-fc66f318c833
 lx-space-nails.jpg  https://images.unsplash.com/photo-1676536162793-faa565d976d4
-lx-space-lounge.jpg  https://images.unsplash.com/photo-1759262151080-e05ba1c6294f
 lx-champagne.jpg  https://images.unsplash.com/photo-1580657264608-44775e61c0a1
 lx-tex-marble.jpg  https://images.unsplash.com/photo-1690049089775-b915262c89d0
 lx-tex-silk.jpg  https://images.unsplash.com/photo-1631737859822-d954fbb08f5f
@@ -62,3 +60,8 @@ shop/lx-beard-oil.jpg  https://images.unsplash.com/photo-1608571423539-e951b9b38
 shop/lx-silk.jpg  https://images.unsplash.com/photo-1631737859822-d954fbb08f5f
 
 Other files in this folder come from the first version of the sample (also Unsplash); see git history for their sources.
+lx-colour.jpg  https://images.unsplash.com/photo-1779912217708-79cffa097ef8
+lx-m-hightop.jpg  https://images.unsplash.com/photo-1646658104783-2eec2433c1d1
+lx-m-locs.jpg  https://images.unsplash.com/photo-1649278948911-b76b8ccec329
+lx-k-cornrows.jpg  https://images.unsplash.com/photo-1787006651642-b2cba646b3f9
+lx-b-gents-hands.jpg  https://images.unsplash.com/photo-1680916694144-6477fad0a88c

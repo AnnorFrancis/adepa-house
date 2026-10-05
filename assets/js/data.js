@@ -34,7 +34,7 @@ window.ADEPA = {
         { id: 'w8',  sub: 'Wigs', name: 'HD lace wig install', mins: 120, price: 900, img: 'lx-lace.jpg', note: 'Braid-down, lace tinted and melted to your skin, styled to finish. Glueless on request.' },
         { id: 'w9',  sub: 'Wigs', name: 'Custom wig construction', mins: 60, price: 2500, from: true, img: 'lx-custom-unit.jpg', note: 'A unit made to your head measurements in our atelier. Hair priced separately.' },
         { id: 'w12', sub: 'Cut and colour', name: 'Precision cut and style', mins: 60, price: 450, img: 'lx-pixie.jpg', note: 'Pixies, bobs and tapered cuts, finished with a style.' },
-        { id: 'w11', sub: 'Cut and colour', name: 'Bespoke colour', mins: 150, price: 1200, from: true, img: 'her-blonde-crop.jpg', note: 'Blonde, copper or rich brunette, with a bond-building treatment included.' },
+        { id: 'w11', sub: 'Cut and colour', name: 'Bespoke colour', mins: 150, price: 1200, from: true, img: 'lx-colour.jpg', note: 'Blonde, copper or rich brunette, with a bond-building treatment included.' },
         { id: 'w3',  sub: 'Treatments', name: 'Scalp and hair ritual', mins: 60, price: 550, img: 'svc-steam.jpg', note: 'Scalp analysis, steam, massage and a treatment chosen for your hair.' },
         { id: 'w10', sub: 'Treatments', name: 'Loc retwist and styling', mins: 120, price: 700, img: 'lx-locs-w.jpg', note: 'Wash, scalp care, retwist and an updo or loose style.' },
         { id: 'w13', sub: 'Bridal and occasion', name: 'Bridal hair, with trial', mins: 180, price: 3500, from: true, img: 'lx-bride-hair.jpg', note: 'Trial in the salon, then we come to you on the morning of the wedding.' },
@@ -48,13 +48,13 @@ window.ADEPA = {
       items: [
         { id: 'm1',  sub: 'Cuts', name: 'Signature cut', mins: 45, price: 250, img: 'lx-m-fade.jpg', note: 'Consultation, cut, wash and a hot towel finish.' },
         { id: 'm2',  sub: 'Cuts', name: 'Skin fade and line-up', mins: 45, price: 230, img: 'lx-m-signature.jpg', note: 'Low, mid or high, finished with a straight-razor line-up.' },
-        { id: 'm6',  sub: 'Cuts', name: 'High-top and shape-up', mins: 45, price: 250, img: 'him-high-top.jpg', note: 'Shaped by hand and finished with the razor.' },
+        { id: 'm6',  sub: 'Cuts', name: 'High-top and shape-up', mins: 45, price: 250, img: 'lx-m-hightop.jpg', note: 'Shaped by hand and finished with the razor.' },
         { id: 'm10', sub: 'Cuts', name: 'Executive express', mins: 40, price: 400, img: 'lx-m-exec.jpg', note: 'Cut, beard and hot towel in forty minutes, for the lunch hour.' },
         { id: 'm3',  sub: 'Shave and beard', name: 'Cut and beard ritual', mins: 75, price: 380, img: 'lx-m-beardcut.jpg', note: 'Signature cut plus beard sculpting, oil and balm.' },
         { id: 'm4',  sub: 'Shave and beard', name: 'Royal hot towel shave', mins: 45, price: 280, img: 'lx-m-hottowel.jpg', note: 'Pre-shave oil, three hot towels, a straight-razor shave and a cold-towel finish.' },
         { id: 'm5',  sub: 'Shave and beard', name: 'Beard sculpt and conditioning', mins: 30, price: 180, img: 'lx-m-beard.jpg', note: 'Shape, line and condition, with no haircut.' },
         { id: 'm7',  sub: 'Locs and texture', name: 'Waves and texture treatment', mins: 45, price: 280, img: 'him-waves.jpg', note: 'Wash, moisture treatment and a brush-in set.' },
-        { id: 'm9',  sub: 'Locs and texture', name: 'Loc maintenance', mins: 90, price: 450, img: 'him-locs.jpg', note: 'Wash, scalp care and retwist.' },
+        { id: 'm9',  sub: 'Locs and texture', name: 'Loc maintenance', mins: 90, price: 450, img: 'lx-m-locs.jpg', note: 'Wash, scalp care and retwist.' },
         { id: 'm11', sub: 'Locs and texture', name: 'Men’s cornrows', mins: 75, price: 300, img: 'svc-cornrows-m.jpg', note: 'Straight back or patterned, in your own hair.' }
       ]
     },
@@ -65,7 +65,7 @@ window.ADEPA = {
       items: [
         { id: 'k1', sub: 'Everyone', name: 'First haircut ceremony', mins: 45, price: 250, img: 'lx-k-first.jpg', note: 'A slow first cut, a photograph, a certificate and the first curl in a keepsake box.' },
         { id: 'k2', sub: 'Boys', name: 'Young gentleman’s cut', mins: 40, price: 180, img: 'lx-k-gent.jpg', note: 'Clipper or scissor cut with a soft line-up.' },
-        { id: 'k5', sub: 'Boys', name: 'Boys’ cornrows', mins: 60, price: 250, img: 'kid-boy-cornrows.jpg', note: 'Straight back or patterned, in their own hair.' },
+        { id: 'k5', sub: 'Boys', name: 'Boys’ cornrows', mins: 60, price: 250, img: 'lx-k-cornrows.jpg', note: 'Straight back or patterned, in their own hair.' },
         { id: 'k3', sub: 'Girls', name: 'Princess braids with beads', mins: 90, price: 350, img: 'lx-k-princess.jpg', note: 'Their own hair, light partings and beads of their choice.' },
         { id: 'k4', sub: 'Girls', name: 'Kids’ knotless braids', mins: 180, price: 650, img: 'lx-k-knotless.jpg', note: 'Kept light and loose at the hairline so nothing pulls.' },
         { id: 'k6', sub: 'Everyone', name: 'Natural styling and puffs', mins: 45, price: 220, img: 'lx-k-puffs.jpg', note: 'Gentle detangle, wash and a style that lasts the week.' },
@@ -82,7 +82,7 @@ window.ADEPA = {
         { id: 'b3', sub: 'Nails', name: 'Sculpted acrylic set', mins: 100, price: 550, img: 'lx-b-acrylic.jpg', note: 'Any length and shape. Nail art priced per design.' },
         { id: 'b4', sub: 'Nails', name: 'Spa pedicure ritual', mins: 70, price: 400, img: 'lx-b-pedicure.jpg', note: 'Mineral soak, scrub, masque, massage and polish in a private chair.' },
         { id: 'b5', sub: 'Nails', name: 'Manicure and pedicure ritual', mins: 120, price: 650, img: 'nails-pedicure-station.jpg', note: 'Both, side by side, with a drink of your choice.' },
-        { id: 'b6', sub: 'Nails', name: 'Gentleman’s hand and foot ritual', mins: 75, price: 450, img: 'svc-mens-hands.jpg', note: 'No polish. Trimmed, buffed and massaged.' },
+        { id: 'b6', sub: 'Nails', name: 'Gentleman’s hand and foot ritual', mins: 75, price: 450, img: 'lx-b-gents-hands.jpg', note: 'No polish. Trimmed, buffed and massaged.' },
         { id: 'b7', sub: 'Lashes and brows', name: 'Brow lamination and tint', mins: 45, price: 350, img: 'lx-b-brows.jpg', note: 'Brushed-up, fuller brows that last six weeks.' },
         { id: 'b8', sub: 'Lashes and brows', name: 'Lash extensions', mins: 120, price: 600, img: 'lx-b-lashes.jpg', note: 'Classic or hybrid, mapped to the shape of your eye.' },
         { id: 'b9', sub: 'Make-up', name: 'Soft glam make-up', mins: 75, price: 800, img: 'lx-b-glam.jpg', note: 'Skin-first glam for dinners, shoots and events.' },
