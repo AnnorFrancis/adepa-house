@@ -1,8 +1,8 @@
-/* ADEPA HOUSE — home: intro, photo wall, rooms, signature rail, slideshow, looks,
-   boutique teaser, artists, words, hours. */
+/* NAKUS BEAUTY STUDIO — home: intro, photo wall, categories, popular services, slideshow,
+   popular styles, shop teaser, team, reviews, hours. */
 (function () {
   'use strict';
-  var A = window.ADEPA, anim = A.canAnim;
+  var A = window.NAKUS, anim = A.canAnim;
   var IMG = 'assets/img/';
   function $(id) { return document.getElementById(id); }
 
@@ -67,18 +67,18 @@
       .to('.nav', { opacity: 1, duration: 1 }, '<');
   }
   var seen = false;
-  try { seen = sessionStorage.getItem('adepa-intro') === '1'; } catch (e) {}
+  try { seen = sessionStorage.getItem('nakus-intro') === '1'; } catch (e) {}
   var came = A.arrive(null);
 
   if (!anim || seen || came) {
     intro.style.display = 'none';
     heroIn(came ? .45 : .1);
   } else {
-    try { sessionStorage.setItem('adepa-intro', '1'); } catch (e) {}
+    try { sessionStorage.setItem('nakus-intro', '1'); } catch (e) {}
     $('introMark').outerHTML = A.mark('intro__mark');
     var markEl = intro.querySelector('.intro__mark');
     var word = $('introWord');
-    'Adepa House'.split('').forEach(function (ch) { var s = document.createElement('span'); s.innerHTML = ch === ' ' ? '&nbsp;' : ch; word.appendChild(s); });
+    'Nakus'.split('').forEach(function (ch) { var s = document.createElement('span'); s.innerHTML = ch === ' ' ? '&nbsp;' : ch; word.appendChild(s); });
     var letters = word.querySelectorAll('span');
     var halves = intro.querySelectorAll('.intro__half');
     gsap.set(titleSpans, { yPercent: 108 });
@@ -102,10 +102,10 @@
   $('doors').innerHTML = A.groups.map(function (g, i) {
     return '<article class="door' + (i === 0 ? ' is-on' : '') + '" tabindex="0">' +
       '<div class="door__img" style="background-image:url(\'' + IMG + IMGS[g.id] + '.jpg\')"></div>' +
-      '<div class="door__body"><h3 class="door__name"><span class="door__who">' + g.short + '</span>' + g.name + '</h3>' +
+      '<div class="door__body"><h3 class="door__name"><span class="door__who">' + g.items.length + ' services</span>' + g.name + '</h3>' +
       '<div class="door__more"><div><div class="door__panel glass-d"><ul class="door__list">' +
         PICKS[g.id].map(function (id) { var f = A.find(id); return '<li><span>' + f.item.name + '</span><span>' + (f.item.from ? 'from ' : '') + A.money(f.item.price) + '</span></li>'; }).join('') +
-      '</ul><a class="btn btn--champ btn--sm" href="services.html#' + g.id + '">See all ' + g.items.length + ' treatments</a></div></div></div></div></article>';
+      '</ul><a class="btn btn--champ btn--sm" href="services.html#' + g.id + '">See all ' + g.items.length + ' services</a></div></div></div></div></article>';
   }).join('');
   var doors = Array.prototype.slice.call(document.querySelectorAll('.door'));
   doors.forEach(function (d) {
@@ -141,7 +141,7 @@
   chart.innerHTML = A.looks.map(function (l) {
     var f = A.find(l.svc);
     return '<article class="look" data-who="' + l.who + '"><div class="ph"><img src="' + IMG + 's/' + l.img + '" alt="' + l.name + '" loading="lazy">' +
-      '<button type="button" class="look__add" data-add-svc="' + l.svc + '" data-label="Add to reservation" aria-label="Add ' + l.name + ' to your reservation"></button></div>' +
+      '<button type="button" class="look__add" data-add-svc="' + l.svc + '" data-label="Add to booking" aria-label="Add ' + l.name + ' to your booking"></button></div>' +
       '<div class="look__meta"><h3>' + l.name + '</h3><span>' + (f.item.from ? 'from ' : '') + A.money(f.item.price) + '</span></div></article>';
   }).join('');
   var tiles = Array.prototype.slice.call(chart.children);
@@ -160,14 +160,14 @@
     });
   });
 
-  /* ---------- boutique teaser ---------- */
+  /* ---------- shop teaser ---------- */
   $('shopTeaser').innerHTML = ['p1', 'p7', 'p8', 'p15'].map(function (id) {
     var p = A.product(id), cat = A.shopCats.filter(function (c) { return c.id === p.cat; })[0];
     return '<article class="prod glass-d"><div class="ph"><img src="' + IMG + 's/' + p.img + '" alt="' + p.name + '" loading="lazy"><span class="chip-on-img">' + cat.name + '</span></div>' +
       '<div class="card__body"><h3>' + p.name + '</h3><p>' + p.note + '</p><div class="card__foot"><span class="price">' + A.money(p.price) + '</span>' + A.addBtn('prod', p.id) + '</div></div></article>';
   }).join('');
 
-  /* ---------- artists ---------- */
+  /* ---------- team ---------- */
   $('team').innerHTML = A.team.map(function (p) {
     return '<article class="person"><div class="ph" data-unmask><img src="' + IMG + 's/' + p.img + '" alt="' + p.name + '" loading="lazy"></div><div class="person__plate glass-d"><h3>' + p.name + '</h3><p>' + p.role + '</p></div></article>';
   }).join('');

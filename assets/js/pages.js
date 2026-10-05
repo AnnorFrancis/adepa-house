@@ -1,7 +1,7 @@
-/* ADEPA HOUSE — the menu, the boutique, the lookbook and the house. */
+/* NAKUS BEAUTY STUDIO — services, shop, gallery and about pages. */
 (function () {
   'use strict';
-  var A = window.ADEPA, anim = A.canAnim, IMG = 'assets/img/';
+  var A = window.NAKUS, anim = A.canAnim, IMG = 'assets/img/';
   var page = document.body.dataset.page;
   function $(id) { return document.getElementById(id); }
 
@@ -18,7 +18,7 @@
     if (window.scrollY > top + 40) { if (A.lenis) A.lenis.scrollTo(top); else window.scrollTo({ top: top, behavior: 'smooth' }); }
   }
 
-  /* ================= THE MENU ================= */
+  /* ================= SERVICES ================= */
   if (page === 'services') {
     var current = null, sub = 'All';
     $('seg').innerHTML = A.groups.map(function (g) {
@@ -60,7 +60,7 @@
     select(location.hash.slice(1), false);
   }
 
-  /* ================= THE BOUTIQUE ================= */
+  /* ================= SHOP ================= */
   if (page === 'shop') {
     var cat = 'all';
     var PAIR = { w8: ['Add the install', 'Install added'], w9: ['Add wig construction', 'Construction added'], w3: ['Add a scalp ritual', 'Scalp ritual added'], w1: ['Add a silk press', 'Silk press added'], m5: ['Add a beard sculpt', 'Beard sculpt added'] };
@@ -89,7 +89,7 @@
     drawShop();
   }
 
-  /* ================= LOOKBOOK ================= */
+  /* ================= GALLERY ================= */
   if (page === 'lookbook') {
     /* every photograph is tied to the treatment that produces it */
     var ORDER = ['w1', 'm4', 'w5', 'k1', 'b9', 'w13', 'm2', 'w8', 'k3', 'b2', 'w7', 'm3', 'w12', 'k2', 'b8',
@@ -154,7 +154,7 @@
     });
   }
 
-  /* ================= THE HOUSE ================= */
+  /* ================= ABOUT ================= */
   if (page === 'about') {
     $('teamAll').innerHTML = A.team.map(function (p) {
       return '<article class="person"><div class="ph" data-unmask><img src="' + IMG + 's/' + p.img + '" alt="' + p.name + '" loading="lazy"></div><div class="person__plate glass-d"><h3>' + p.name + '</h3><p>' + p.role + '</p></div></article>';

@@ -1,4 +1,4 @@
-/* ADEPA HOUSE — a private hair and beauty house, Airport Residential, Accra.
+/* NAKUS BEAUTY STUDIO — a private hair and beauty studio, Airport Residential, Accra.
    Bodoni Moda for display, Jost for everything else. Midnight, porcelain and espresso,
    with champagne used sparingly for detail. Smoky glass over photography and marble. */
 
@@ -184,8 +184,8 @@ body.is-locked { overflow: hidden; }
 .logo { display: inline-flex; align-items: center; gap: 12px; }
 .logo svg { width: 38px; height: 38px; flex: 0 0 auto; color: var(--champagne); }
 .logo__word { display: flex; flex-direction: column; line-height: 1; }
-.logo__word b { font-family: var(--serif); font-weight: 500; font-size: 1.375rem; letter-spacing: .02em; }
-.logo__word i { font-style: normal; font-size: .6875rem; font-weight: 400; letter-spacing: .08em; opacity: .62; margin-top: 4px; }
+.logo__word b { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; letter-spacing: .04em; }
+.logo__word i { font-style: normal; font-size: .5625rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; opacity: .7; margin-top: 5px; white-space: nowrap; }
 
 /* =====================================================
    NAV — smoky glass, champagne underline that follows the pointer
@@ -218,7 +218,7 @@ body.is-locked { overflow: hidden; }
 @media (max-width: 1060px) {
   .nav__links { display: none; } .burger { display: block; }
   .nav { height: 62px; padding-left: 14px; top: 10px; gap: 10px; }
-  .logo__word i { display: none; }
+  .nav .logo__area { display: none; }
 }
 @media (max-width: 420px) {
   .nav { width: calc(100% - 20px); padding: 0 8px 0 12px; gap: 8px; }
@@ -229,7 +229,8 @@ body.is-locked { overflow: hidden; }
   .burger::before { top: 16px; } .burger::after { top: 23px; }
   .logo { gap: 8px; }
   .logo svg { width: 28px; height: 28px; }
-  .logo__word b { font-size: 1.0625rem; white-space: nowrap; }
+  .logo__word b { font-size: 1.1875rem; white-space: nowrap; }
+  .logo__word i { font-size: .5rem; letter-spacing: .2em; margin-top: 3px; }
 }
 
 /* ---------- full-screen menu ---------- */
@@ -518,7 +519,7 @@ body.is-locked { overflow: hidden; }
 .foot__cols a:hover { color: var(--champagne-l); }
 .foot__cols .logo { margin-bottom: 16px; }
 .foot__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 20px 0 26px; font-size: .8125rem; letter-spacing: .02em; color: rgba(255, 255, 255, .5); border-top: 1px solid var(--line-inv); }
-.foot__mark { font-family: var(--serif); font-weight: 400; font-size: 21vw; line-height: .8; letter-spacing: -.02em; color: rgba(201, 179, 139, .07); text-align: center; white-space: nowrap; user-select: none; margin: 1vw 0 -4.6vw; }
+.foot__mark { font-family: var(--serif); font-weight: 400; font-size: 30vw; line-height: .8; letter-spacing: -.02em; color: rgba(201, 179, 139, .07); text-align: center; white-space: nowrap; user-select: none; margin: 1vw 0 -4.6vw; }
 @media (max-width: 760px) { .foot__cols { grid-template-columns: 1fr 1fr; } .foot__cols > div:first-child { grid-column: 1 / -1; } }
 
 /* =====================================================

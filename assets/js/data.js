@@ -1,15 +1,15 @@
-/* ADEPA HOUSE — everything the client will want to edit lives here:
-   business details, hours, the service menu (one photo per service), the boutique,
-   signature looks and the team. Image names refer to files in assets/img/. */
-window.ADEPA = {
+/* NAKUS BEAUTY STUDIO — everything the client will want to edit lives here:
+   business details, hours, the services (one photo per service), the shop,
+   popular styles and the team. Image names refer to files in assets/img/. */
+window.NAKUS = {
   biz: {
-    name: 'Adepa House',
+    name: 'Nakus Beauty Studio',
     area: 'Airport Residential Area, Accra',
     address: '12 Senchi Street, Airport Residential Area, Accra',
     phone: '+233 30 000 0000',
     tel: '+233300000000',
     whatsapp: '233300000000',
-    email: 'concierge@adepahouse.com',
+    email: 'hello@nakusbeauty.com',
     maps: 'https://www.google.com/maps/search/?api=1&query=Airport+Residential+Area+Accra',
     delivery: 50            /* GH₵, courier delivery inside Accra */
   },
@@ -17,10 +17,10 @@ window.ADEPA = {
   /* 0 = Sunday. [open, close] in 24h. */
   hours: { 0: [12, 18], 1: [9, 21], 2: [9, 21], 3: [9, 21], 4: [9, 21], 5: [9, 21], 6: [9, 21] },
 
-  /* Four rooms. `sub` groups services inside each room on the menu page. */
+  /* Four categories. `sub` groups services inside each category on the services page. */
   groups: [
     {
-      id: 'women', name: 'The Salon', short: 'Women', img: 'lx-pearl-bun.jpg',
+      id: 'women', name: 'Women', short: 'Women', img: 'lx-pearl-bun.jpg',
       blurb: 'Silk presses, braids, wigs, colour and bridal hair, by senior stylists only.',
       subs: ['Silk and blowouts', 'Braids', 'Wigs', 'Cut and colour', 'Treatments', 'Bridal and occasion'],
       items: [
@@ -42,8 +42,8 @@ window.ADEPA = {
       ]
     },
     {
-      id: 'men', name: 'The Grooming Room', short: 'Men', img: 'lx-m-signature.jpg',
-      blurb: 'A private room for gentlemen: cuts, hot towel shaves, beards and locs.',
+      id: 'men', name: 'Men', short: 'Men', img: 'lx-m-signature.jpg',
+      blurb: 'A private room for men: cuts, hot towel shaves, beards and locs.',
       subs: ['Cuts', 'Shave and beard', 'Locs and texture'],
       items: [
         { id: 'm1',  sub: 'Cuts', name: 'Signature cut', mins: 45, price: 250, img: 'lx-m-fade.jpg', note: 'Consultation, cut, wash and a hot towel finish.' },
@@ -59,7 +59,7 @@ window.ADEPA = {
       ]
     },
     {
-      id: 'kids', name: 'The Little Suite', short: 'Children', img: 'lx-k-gent.jpg',
+      id: 'kids', name: 'Kids', short: 'Kids', img: 'lx-k-gent.jpg',
       blurb: 'Under twelves, in their own room, with patient hands and no rush.',
       subs: ['Boys', 'Girls', 'Everyone'],
       items: [
@@ -73,7 +73,7 @@ window.ADEPA = {
       ]
     },
     {
-      id: 'beauty', name: 'The Beauty Room', short: 'Nails and beauty', tab: 'Beauty', img: 'lx-b-glam.jpg',
+      id: 'beauty', name: 'Nails & Beauty', short: 'Nails & Beauty', tab: 'Beauty', img: 'lx-b-glam.jpg',
       blurb: 'Hands, feet, lashes, brows and make-up, for her and for him.',
       subs: ['Nails', 'Lashes and brows', 'Make-up'],
       items: [
@@ -91,7 +91,7 @@ window.ADEPA = {
     }
   ],
 
-  /* The boutique: hair and hair care only. `pair` suggests a service to book with it. */
+  /* The shop: hair and hair care only. `pair` suggests a service to book with it. */
   shopCats: [
     { id: 'hair', name: 'Wigs and hair' },
     { id: 'care', name: 'Hair care' },
@@ -115,7 +115,7 @@ window.ADEPA = {
     { id: 'p15', cat: 'silk', name: 'Mulberry silk pillowcase', price: 650, img: 'shop/lx-silk.jpg', note: '22 momme, champagne. Less friction, longer-lasting styles.' }
   ],
 
-  /* Signature looks on the home page and lookbook. `svc` points at a menu item. */
+  /* Popular styles on the home page and gallery. `svc` points at a service. */
   looks: [
     { name: 'Signature silk press', who: 'women', img: 'lx-silkpress.jpg',  svc: 'w1' },
     { name: 'Skin fade',            who: 'men',   img: 'lx-m-signature.jpg', svc: 'm2' },
@@ -128,9 +128,9 @@ window.ADEPA = {
   ],
 
   team: [
-    { id: 't1', name: 'Kwame Asante',  role: 'Head of the Grooming Room',  does: ['men', 'kids'],          img: 'team-1.jpg' },
+    { id: 't1', name: 'Kwame Asante',  role: 'Head of men’s grooming',    does: ['men', 'kids'],          img: 'team-1.jpg' },
     { id: 't2', name: 'Abena Owusu',   role: 'Creative director, braids',  does: ['women', 'kids'],        img: 'her-long-braids.jpg' },
-    { id: 't3', name: 'Efua Mensah',   role: 'Head of the Beauty Room',    does: ['beauty'],               img: 'team-3.jpg' },
+    { id: 't3', name: 'Efua Mensah',   role: 'Head of nails and beauty',  does: ['beauty'],               img: 'team-3.jpg' },
     { id: 't4', name: 'Yaw Boateng',   role: 'Senior barber and loctician', does: ['men', 'women', 'kids'], img: 'team-2.jpg' }
   ]
 };
@@ -154,4 +154,4 @@ window.ADEPA = {
     var h = A.hours[d.getDay()], now = d.getHours() + d.getMinutes() / 60;
     return { open: now >= h[0] && now < h[1], from: h[0], to: h[1] };
   };
-})(window.ADEPA);
+})(window.NAKUS);

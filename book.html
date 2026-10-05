@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your Reservation | Adepa House</title>
-  <meta name="description" content="Reserve treatments at Adepa House and order from the boutique in one go. Choose your artist and a time, collect at the house or have it couriered, and settle at the house or by mobile money.">
+  <title>Book Now | Nakus Beauty Studio</title>
+  <meta name="description" content="Book services at Nakus Beauty Studio and order from the shop in one go. Choose your stylist and a time, collect at the studio or have it couriered, and pay at the studio or by mobile money.">
   <meta name="theme-color" content="#0A0F1C">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/bodoni-moda-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -16,8 +16,8 @@
   <main id="bookMain">
     <section class="phead" style="padding-bottom:clamp(40px,5vw,64px)">
       <div class="wrap">
-        <h1 class="h-xl" data-lines="manual">Your reservation.</h1>
-        <p class="lead muted" data-rise>Treatments and boutique pieces in one place. No account and no deposit: treatments are settled at the house unless you would rather pay now.</p>
+        <h1 class="h-xl" data-lines="manual">Book now.</h1>
+        <p class="lead muted" data-rise>Services and shop items in one place. No account and no deposit: pay at the studio unless you would rather pay now.</p>
       </div>
     </section>
 
@@ -25,18 +25,18 @@
       <div class="wrap bk">
         <form id="bkForm" novalidate>
           <section class="bk__step glass" id="sSvc">
-            <h2><i>1</i>Your treatments</h2>
+            <h2><i>1</i>Your services</h2>
             <p class="bk__hint" id="svcHint"></p>
             <div class="lines" id="svcLines"></div>
             <details class="bk__more" id="svcMore">
-              <summary>Add a treatment</summary>
-              <div class="tabs" id="pickGroup" role="group" aria-label="Choose a room"></div>
+              <summary>Add a service</summary>
+              <div class="tabs" id="pickGroup" role="group" aria-label="Choose a category"></div>
               <div class="pick pick--svc" id="pickSvc"></div>
             </details>
           </section>
 
           <section class="bk__step glass" id="sStaff">
-            <h2><i>2</i>Your artist</h2>
+            <h2><i>2</i>Your stylist</h2>
             <div class="pick" id="pickStaff"></div>
           </section>
 
@@ -48,7 +48,7 @@
           </section>
 
           <section class="bk__step glass" id="sProd">
-            <h2><i>4</i>From the boutique</h2>
+            <h2><i>4</i>From the shop</h2>
             <div class="lines" id="prodLines"></div>
             <div class="pick" id="pickFul" style="margin-top:14px"></div>
             <div class="field" id="addrField" hidden style="margin:14px 0 0">
@@ -67,7 +67,7 @@
           </section>
 
           <section class="bk__step glass" id="sPay">
-            <h2><i>6</i>Settling up</h2>
+            <h2><i>6</i>Payment</h2>
             <div class="pick" id="pickPay"></div>
             <p class="bk__hint" id="payHint" style="margin:14px 0 0"></p>
           </section>
@@ -87,7 +87,7 @@
 
   <section class="done s-porcelain" id="done">
     <span class="done__tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
-    <h1 class="h-l" id="doneTitle">You are reserved.</h1>
+    <h1 class="h-l" id="doneTitle">You are booked.</h1>
     <p class="lead muted" style="margin:18px auto 0" id="doneLead"></p>
     <dl class="done__card glass" id="doneCard"></dl>
     <div class="done__cta">

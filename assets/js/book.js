@@ -1,14 +1,14 @@
-/* ADEPA HOUSE — checkout. Reads the bag (services + products) and walks through:
+/* NAKUS BEAUTY STUDIO — checkout. Reads the bag (services + products) and walks through:
    services, stylist, time, shop items (collect or deliver), details, payment. */
 (function () {
   'use strict';
-  var A = window.ADEPA, anim = A.canAnim, IMG = 'assets/img/s/';
+  var A = window.NAKUS, anim = A.canAnim, IMG = 'assets/img/s/';
   var $ = function (id) { return document.getElementById(id); };
   var DAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var st = { staff: 'any', day: null, slot: null, ful: null, pay: null, pickGroup: 'women' };
 
-  /* ?svc=w7 from a lookbook photo or an old link: add it, then tidy the address bar */
+  /* ?svc=w7 from a gallery photo or an old link: add it, then tidy the address bar */
   var m = location.search.match(/[?&]svc=([a-z]\d+)/);
   if (m && A.find(m[1])) { A.bag.addSvc(m[1]); history.replaceState(null, '', 'book.html'); }
 
@@ -42,8 +42,8 @@
         '<div class="end">' + (f.item.from ? 'from ' : '') + A.money(f.item.price) + '<button type="button" class="bag__rm" data-rm="' + f.item.id + '">Remove</button></div></div>';
     }).join('');
     $('svcHint').textContent = !M.svcs.length
-      ? (M.prods.length ? 'No treatments yet. Only shopping the boutique? Go straight to your pieces below.' : 'Nothing chosen yet. Add a treatment below.')
-      : M.gids.length > 1 ? 'Reserving for the family? We seat you side by side, so everyone is finished at about the same time.' : 'Add anything else you would like at the same visit.';
+      ? (M.prods.length ? 'No services yet. Only shopping? Go straight to your items below.' : 'Nothing chosen yet. Add a service below.')
+      : M.gids.length > 1 ? 'Booking for the family? We seat you side by side, so everyone is finished at about the same time.' : 'Add anything else you would like at the same visit.';
     if (!M.svcs.length && !M.prods.length) $('svcMore').open = true;
     $('pickGroup').innerHTML = A.groups.map(function (g) {
       return '<button type="button" class="tab" data-g="' + g.id + '" aria-pressed="' + (st.pickGroup === g.id) + '">' + (g.tab || g.short) + '</button>';
@@ -113,7 +113,7 @@
     }).join('');
     var opts = M.svcs.length
       ? [['collect', 'Collect at my visit', 'Waiting at your chair']]
-      : [['collect', 'Collect at the house', 'Ready within the hour']];
+      : [['collect', 'Collect at the studio', 'Ready within the hour']];
     opts.push(['deliver', 'Courier to me', A.money(A.biz.delivery) + ', anywhere in Accra']);
     if (!st.ful) st.ful = 'collect';
     $('pickFul').innerHTML = opts.map(function (o) { return opt('<b>' + o[1] + '</b><span>' + o[2] + '</span>', st.ful === o[0], 'data-f="' + o[0] + '"'); }).join('');
@@ -129,7 +129,7 @@
   function drawPay(M) {
     var deliver = M.prods.length && st.ful === 'deliver';
     var opts = [
-      ['salon', M.svcs.length ? 'Settle at the house' : 'Pay when you collect', 'Cash, mobile money or card', deliver],
+      ['salon', M.svcs.length ? 'Pay at the studio' : 'Pay when you collect', 'Cash, mobile money or card', deliver],
       ['momo', 'Mobile money now', 'MTN, Telecel or AirtelTigo', false],
       ['card', 'Card now', 'Visa or Mastercard', false]
     ];
@@ -145,7 +145,7 @@
     return { del: del, all: M.svcTotal + M.prodTotal + del };
   }
   function missing(M) {
-    if (!M.svcs.length && !M.prods.length) return 'Add a treatment or a boutique piece to begin.';
+    if (!M.svcs.length && !M.prods.length) return 'Add a service or a shop item to begin.';
     if (M.svcs.length && st.slot === null) return 'Pick a day and a time.';
     if (M.prods.length && st.ful === 'deliver' && $('fAddr').value.trim().length < 4) return 'Add the courier address.';
     if ($('fName').value.trim().length < 2 || $('fPhone').value.replace(/\D/g, '').length < 9) return 'Add your name and phone number.';
@@ -163,10 +163,10 @@
     }
     $('slipLines').innerHTML = rows.length ? rows.map(function (r) { return '<div><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>'; }).join('') : '<div><dt>Nothing chosen yet</dt><dd></dd></div>';
     $('sTotal').textContent = (M.from ? 'from ' : '') + A.money(T.all);
-    $('sSplit').textContent = !rows.length ? '' : st.pay === 'salon' ? 'Nothing to pay now. Settle at the house.' : 'Paid now by ' + (st.pay === 'momo' ? 'mobile money' : 'card') + '.';
+    $('sSplit').textContent = !rows.length ? '' : st.pay === 'salon' ? 'Nothing to pay now. Pay at the studio.' : 'Paid now by ' + (st.pay === 'momo' ? 'mobile money' : 'card') + '.';
     var need = missing(M);
     $('bkGo').disabled = !!need;
-    $('bkGo').textContent = st.pay === 'salon' ? (M.svcs.length ? 'Confirm reservation' : 'Place order') : 'Pay ' + A.money(T.all);
+    $('bkGo').textContent = st.pay === 'salon' ? (M.svcs.length ? 'Confirm booking' : 'Place order') : 'Pay ' + A.money(T.all);
     $('bkHint').textContent = need || 'All set.';
   }
 
@@ -207,7 +207,7 @@
     var T = totals(M), box = $('paying');
     $('payTitle').textContent = st.pay === 'momo' ? 'Check your phone' : 'Opening secure card payment';
     $('payMsg').textContent = st.pay === 'momo'
-      ? 'Approve the ' + A.money(T.all) + ' prompt from Adepa House on ' + $('fPhone').value.trim() + '.'
+      ? 'Approve the ' + A.money(T.all) + ' prompt from Nakus Beauty Studio on ' + $('fPhone').value.trim() + '.'
       : 'You would enter your card on the payment provider’s page. In this demo nothing is charged.';
     box.classList.add('is-on');
     setTimeout(function () { $('payTitle').textContent = 'Payment received'; $('payMsg').textContent = 'Thank you.'; }, 2600);
@@ -216,27 +216,27 @@
 
   function finish(M) {
     var T = totals(M), first = $('fName').value.trim().split(' ')[0];
-    var ref = 'AH-' + String(new Date().getDate()).padStart(2, '0') + Math.random().toString(36).slice(2, 6).toUpperCase();
+    var ref = 'NB-' + String(new Date().getDate()).padStart(2, '0') + Math.random().toString(36).slice(2, 6).toUpperCase();
     var who = st.staff === 'any' ? 'First available' : A.team.filter(function (x) { return x.id === st.staff; })[0].name;
     var when = M.svcs.length ? fmtDay(days[st.day]) + ', ' + fmtTime(st.slot) : '';
     var rows = [['Reference', ref]];
     if (M.svcs.length) {
-      rows.push(['Treatments', M.svcs.map(function (f) { return f.item.name; }).join(', ')]);
+      rows.push(['Services', M.svcs.map(function (f) { return f.item.name; }).join(', ')]);
       rows.push(['With', who]); rows.push(['When', when]);
     }
     if (M.prods.length) {
-      rows.push(['Boutique', M.prods.map(function (x) { return x.p.name + (x.q > 1 ? ' × ' + x.q : ''); }).join(', ')]);
-      rows.push([st.ful === 'deliver' ? 'Courier to' : 'Collection', st.ful === 'deliver' ? $('fAddr').value.trim() : (M.svcs.length ? 'At your visit' : 'At the house, ready within the hour')]);
+      rows.push(['Shop', M.prods.map(function (x) { return x.p.name + (x.q > 1 ? ' × ' + x.q : ''); }).join(', ')]);
+      rows.push([st.ful === 'deliver' ? 'Courier to' : 'Collection', st.ful === 'deliver' ? $('fAddr').value.trim() : (M.svcs.length ? 'At your visit' : 'At the studio, ready within the hour')]);
     }
     rows.push(['Total', (M.from ? 'from ' : '') + A.money(T.all)]);
-    rows.push(['Payment', st.pay === 'salon' ? 'At the house' : 'Paid by ' + (st.pay === 'momo' ? 'mobile money' : 'card')]);
+    rows.push(['Payment', st.pay === 'salon' ? 'At the studio' : 'Paid by ' + (st.pay === 'momo' ? 'mobile money' : 'card')]);
 
-    $('doneTitle').textContent = M.svcs.length ? 'You are reserved.' : 'Order placed.';
+    $('doneTitle').textContent = M.svcs.length ? 'You are booked.' : 'Order placed.';
     $('doneLead').textContent = 'Thank you, ' + first + '. ' + (M.svcs.length ? 'Your chair is held for fifteen minutes past the hour. ' : '') + 'We will message ' + $('fPhone').value.trim() + ' to confirm.';
     $('doneCard').innerHTML = rows.map(function (r) { return '<div><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>'; }).join('');
     $('doneWa').href = 'https://wa.me/' + A.biz.whatsapp + '?text=' + encodeURIComponent(
-      'Hello Adepa House, this is ' + $('fName').value.trim() + '. Reference ' + ref + '. ' +
-      (M.svcs.length ? 'Reserved: ' + M.svcs.map(function (f) { return f.item.name; }).join(', ') + ' on ' + when + '. ' : '') +
+      'Hello Nakus Beauty Studio, this is ' + $('fName').value.trim() + '. Reference ' + ref + '. ' +
+      (M.svcs.length ? 'Booked: ' + M.svcs.map(function (f) { return f.item.name; }).join(', ') + ' on ' + when + '. ' : '') +
       (M.prods.length ? 'Shop items: ' + M.prods.map(function (x) { return x.p.name + ' x' + x.q; }).join(', ') + '. ' : ''));
 
     A.bag.clear();
